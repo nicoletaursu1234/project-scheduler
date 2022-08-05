@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "@babel/react",
+    "@babel/typescript",
+    [
+      "@babel/env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+
+  "plugins": [
+    ["babel-plugin-styled-components"],
+    ["@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ]
+  ]
+}

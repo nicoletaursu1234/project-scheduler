@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  db:
+    image: postgres:12-alpine
+    container_name: "Scheduler"
+    ports:
+      - '5450:5432'
+    volumes:
+      - ./pg:/docker-entrypoint-initdb.d/
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_DB: 'scheduler'

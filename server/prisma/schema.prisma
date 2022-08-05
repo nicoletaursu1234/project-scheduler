@@ -1,0 +1,57 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id              String       @id @default(uuid())
+  email           String       @unique
+  avatar          String?
+  firstName       String
+  lastName        String
+  password        String
+  dateOfBirth     DateTime
+  country         String
+  timezone        String
+  activities      Activity[]
+  calendars       Calendar[]  @relation(references: [id], map: "Calendar")
+}
+
+model Calendar {
+  id              String       @id @default(uuid())
+  name            String
+  description     String?
+  isPublic        Boolean
+  activities      Activity[]
+  members         User[]       @relation(references: [id], map: "User")
+}
+
+model Activity {
+  id            String    @id @default(uuid())
+  calendar      Calendar? @relation(fields: [calendarId], references: [id], map: "Calendar", onDelete: Cascade)
+  user          User?     @relation(fields: [userId], references: [id], map: "User", onDelete: Cascade)
+  title         String
+  description   String?
+  startDateTime DateTime
+  endDateTime   DateTime
+  priority      String?
+  links         Json?
+  location      String?
+  messages      Message[]
+  calendarId    String
+  userId        String
+}
+
+model Message {
+  id          String       @id @default(uuid())
+  activity    Activity     @relation(fields: [activityId], references: [id], map: "Activity", onDelete: Cascade)
+  sender      Json
+  text        String
+  attachments String?
+  createdAt   DateTime
+  activityId  String
+}

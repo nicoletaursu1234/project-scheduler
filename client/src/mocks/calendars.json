@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "My calendar",
+    "description": "Public calendar",
+    "isPublic": true,
+    "chatId": 1,
+    "activities": [],
+    "members": [
+      {
+        "email": "test@test.com"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "My calendar",
+    "description": "Private calendar",
+    "isPublic": false,
+    "chatId": 1,
+    "activities": [],
+    "members": [
+      {
+        "email": "test@test.com"
+      }
+    ]
+  }
+]
